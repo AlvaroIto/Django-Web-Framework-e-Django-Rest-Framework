@@ -1,0 +1,14 @@
+db.sqlite3 - arquivo de base de dados do projeto
+
+manage.py - igual o "django-admin". Utilizado para executar comandos relacionados a configuração e gerenciamento do projeto.
+
+__pycache__ - cache do python
+
+__init__.py - arquivo para indicar para o python que a pasta que contém o arquivo é um pacote do python. E em alguns mommentos serve para carregar coisas do pacote igual um export
+
+asgi.py e wsgi.py - arquivos que fazem referencia a web server interface. usados em produção, para ligação com django e a interface web.
+
+settings.py - arquivo de configurações e definições do django (confioguração do BD, aplicações instaladas no projeto, configuração de middleware, urls, arquivos estaticos e de midia...)
+
+urls.py - "porta de entrada da aplicação" caminhos de cada aplicativos digitados na url
+
