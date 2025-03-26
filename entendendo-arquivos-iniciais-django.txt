@@ -12,3 +12,21 @@ settings.py - arquivo de configurações e definições do django (confioguraç�
 
 urls.py - "porta de entrada da aplicação" caminhos de cada aplicativos digitados na url
 
+apps - pasta que serve para juntar tudo num lugar só, por exmeplo paginas (home, sobre, contato)
+
+
+ARQUIVOS APPS
+
+migrations > init - Relacionados as migrações da base de dados (ORM)
+
+init - arquivo para indicar para o python que a pasta que contém o arquivo é um pacote do python. E em alguns mommentos serve para carregar coisas do pacote igual um export
+
+admin - serve para registrar os models, para o django criar uma área administrativa do model
+
+apps - nome do app. Quando for configurar no settings será necessário usar o mesmo nome da variavel 'name'
+
+models - serve como 'estrutura' do banco de dados, definindo como os dados serão armazenados e organizados. por exemplo, se criar um blog, pode ter model chamado "Post" com campos "titulo", "conteudo" e data de publicação". O django que irá criar, ler, atualizar e deletar (CRUD) esses dados no banco de dados
+
+tests - referente a testes
+
+views - funções ou classes que recebem as requisições (resquest) do usuário e retornam uma resposta (response)
