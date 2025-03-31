@@ -30,3 +30,5 @@ models - serve como 'estrutura' do banco de dados, definindo como os dados serã
 tests - referente a testes
 
 views - funções ou classes que recebem as requisições (resquest) do usuário e retornam uma resposta (response)
+
+arquivo estático - aqruivos que serão entregues para o navegador do usuário do jeito que estão salvos no servidor (arquivos que não mudam a todo momento que o usuário solicitar o arquivo)
