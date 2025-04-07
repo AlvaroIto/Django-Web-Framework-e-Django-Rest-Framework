@@ -32,3 +32,5 @@ tests - referente a testes
 views - funções ou classes que recebem as requisições (resquest) do usuário e retornam uma resposta (response)
 
 arquivo estático - aqruivos que serão entregues para o navegador do usuário do jeito que estão salvos no servidor (arquivos que não mudam a todo momento que o usuário solicitar o arquivo)
+
+model - representa uma tabela na base de dados. O django faz o trabalho de converter o código em tabela na base de dados.
