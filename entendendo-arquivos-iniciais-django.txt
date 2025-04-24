@@ -1,3 +1,9 @@
+O django usa o padrão MTV (Model, Template, View) onde;
+Model -  é responsável pelo mapeamento de dados da base de dados para o seu código python
+View - é responsável por tomar decisões sobre quais dados e qual arquivo renderizar
+Template - é responsável pela renderização final dos dados.
+
+
 db.sqlite3 - arquivo de base de dados do projeto
 
 manage.py - igual o "django-admin". Utilizado para executar comandos relacionados a configuração e gerenciamento do projeto.
