@@ -24,6 +24,17 @@
                 {% endfor %}
             </div>
 
+            {% if form.errors %}
+            <div class="form-content form-content-grid">
+                <div class="form-group">
+                    <div class="message message-error">
+                        There are errors in the forms. Please check the fields above.
+                    </div>
+                    
+                </div>
+            </div>
+            {% endif %}
+
             <div class="form-content form-content-grid">
                 <div class="form-group">
                     <button type="submit">Send</button>
