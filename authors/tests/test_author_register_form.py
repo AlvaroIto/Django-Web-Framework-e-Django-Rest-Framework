@@ -117,3 +117,21 @@ class AuthorRegisterFormIntegrationTest(TestCase):
         msg = 'This email is already registered.'
         self.assertIn(msg, response.context['form'].errors.get('email'))
         self.assertIn(msg, response.content.decode('utf-8'))
+
+    def test_author_created_can_login(self):
+        url = reverse('authors:create')
+
+        self.form_data.update({
+            'username': 'testuser',
+            'password': 'Str0ngP@ssword1',
+            'password2': 'Str0ngP@ssword1',
+        })
+
+        self.client.post(url, data=self.form_data, follow=True)
+        
+        is_authenticated = self.client.login(
+            username='testuser',
+            password='Str0ngP@ssword1'
+        )
+
+        self.assertTrue(is_authenticated)
