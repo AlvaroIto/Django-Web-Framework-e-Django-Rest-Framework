@@ -20,7 +20,7 @@ def register_create(request):
 
     if form.is_valid():
         form.save()
-        messages.success(request, 'User registered  successfully!')
+        messages.success(request, 'User registered successfully!')
 
         del(request.session['register_form_data'])
 
