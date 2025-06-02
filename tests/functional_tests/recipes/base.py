@@ -2,7 +2,9 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from utils.browser import make_chrome_browser
 import time
 
-class RecipleBaseFuncionalTest(StaticLiveServerTestCase):
+from recipes.tests.test_recipe_base import RecipeMixin
+
+class RecipleBaseFuncionalTest(StaticLiveServerTestCase, RecipeMixin):
     def setUp(self) -> None:
         self.browser = make_chrome_browser()
         return super().setUp()
