@@ -3,11 +3,12 @@ from selenium.webdriver.common.keys import Keys
 import pytest
 from .base import RecipleBaseFuncionalTest
 from unittest.mock import patch
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 @pytest.mark.functional_test
 class RecipeHomePageTest(RecipleBaseFuncionalTest):
-    @patch('recipes.views.PER_PAGE', new=2)
     def test_recipe_home_page_without_recipes_not_found_message(self):
         self.browser.get(self.live_server_url)
         body = self.browser.find_element(By.TAG_NAME, 'body')
@@ -17,25 +18,39 @@ class RecipeHomePageTest(RecipleBaseFuncionalTest):
     def test_recipe_search_input_can_find_correct_recipes(self):
         recipes = self.make_recipe_in_batch()
 
-        title_needle = 'Recipe 1'
-        
-        recipes[0].title = title_needle
-        recipes[0].save()
-        
+        title_needed = 'This is what I need'
 
-        # Usuário abre a página inicial do site	
+        recipes[0].title = title_needed
+        recipes[0].is_published = True
+        recipes[0].save()
+
+        # Usuário abre a página
         self.browser.get(self.live_server_url)
 
-        # Ve um campo de busca "Search for recipes..."
-        search_input = self.browser.find_element(By.XPATH, '//input[@placeholder="Search for recipes..."]')
+        # Vê um campo de busca com o texto "Search for a recipe"
+        search_input = self.browser.find_element(
+            By.XPATH,
+            '//input[@placeholder="Search for recipes..."]'
+        )
 
-        # clica no campo de busca e digita "recipe"
-        search_input.send_keys(title_needle)
+        # Clica neste input e digita o termo de busca
+        # para encontrar a receita o título desejado
+        search_input.send_keys(title_needed)
         search_input.send_keys(Keys.ENTER)
 
+        # Aguarda a página atualizar e o conteúdo ser renderizado de novo
+        WebDriverWait(self.browser, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, 'main-content-list'))
+        )
+
+        # Rebusca o elemento após a atualização do DOM
+        main_content = self.browser.find_element(By.CLASS_NAME, 'main-content-list')
+
+
+        # O usuário vê o que estava procurando na página
         self.assertIn(
-            title_needle,
-            self.browser.find_element(By.TAG_NAME, 'body').text
+            title_needed,
+            self.browser.find_element(By.CLASS_NAME, 'main-content-list').text,
         )
         
     @patch('recipes.views.PER_PAGE', new=2)

@@ -1,11 +1,10 @@
 from .base import AuthorsBaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import pytest
+
 
 class AuthorsRegisterTest(AuthorsBaseTest):
-    def get_by_placeholder(self, web_element, placeholder):
-        return web_element.find_element(By.XPATH, f'//input[@placeholder="{placeholder}"]')
-    
     def fill_form_dummy_data(self, form):
         
         fields = form.find_elements(By.TAG_NAME, 'input')
@@ -15,7 +14,6 @@ class AuthorsRegisterTest(AuthorsBaseTest):
                 field.send_keys(' '*20)
 
     def get_form(self):
-
         return self.browser.find_element(By.XPATH, '/html/body/main/div[2]/form')
     
     def form_field_test_with_callback(self, callback):
