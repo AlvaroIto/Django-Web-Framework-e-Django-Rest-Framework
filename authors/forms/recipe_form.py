@@ -45,14 +45,14 @@ class AuthorRecipeForm(forms.ModelForm):
             self._my_errors['description'].append('Description cannot be the same as title.')
 
         if self._my_errors:
-            raise ValidationError(self._my_errors)
+            raise ValidationError(dict(self._my_errors))
 
         return super_clean
     
     def clean_title(self):
         title = self.cleaned_data.get('title')
 
-        if len(title) < 5:
+        if title and len(title) < 5:
             self._my_errors['title'].append('Title must be at least 5 characters long.')
         
         return title
