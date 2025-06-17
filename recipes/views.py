@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from utils.pagination import make_pagination
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from recipes.models import Recipe
 
@@ -80,12 +80,17 @@ class RecipeListViewSearch(RecipeListViewBase):
 
         return ctx
 
-def recipe(request, id):
-    recipe = get_object_or_404(Recipe, pk=id, is_published=True)
 
-    return render(request, 'recipes/pages/recipe-view.html', context={
-        'recipe': recipe,
-        'is_detail_page': True,
-    })
+class RecipeDetail(DetailView):
+    model = Recipe
+    context_object_name = 'recipe'
+    template_name = 'recipes/pages/recipe-view.html'
 
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+
+        ctx.update({ 'is_detail_page': True})
+
+        return ctx
+            
 
